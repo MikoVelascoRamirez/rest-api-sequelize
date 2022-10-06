@@ -17,10 +17,23 @@ const createProject = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
-
+    
 }
+
+const getProject = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const singleProject = await Project.findByPk(id);
+        if(singleProject === null) throw new Error('Project not found')
+        return res.status(200).send(singleProject);
+    } catch (error) {
+        return res.status(404).json({ error: error.message})
+    }
+}
+
 
 module.exports = {
     getProjects,
-    createProject
+    createProject,
+    getProject
 }
