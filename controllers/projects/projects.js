@@ -32,8 +32,20 @@ const getProject = async (req, res) => {
 }
 
 
+const deleteProject = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const deleted = await Project.destroy({ where: { id } })
+        if(deleted === 0) throw new Error('El proyecto no se encontró para ser eliminado')
+        res.status(200).send('Proyecto eliminado')
+    } catch (error) {
+        res.status(404).json({error: error.message})
+    }
+}
+
 module.exports = {
     getProjects,
     createProject,
-    getProject
+    getProject,
+    deleteProject
 }
