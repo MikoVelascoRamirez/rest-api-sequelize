@@ -31,13 +31,29 @@ const getProject = async (req, res) => {
     }
 }
 
+const updateProject = async (req, res) => {
+    const body = req.body;
+    const id = req.params.id;
+
+    try {
+        const project = await Project.findByPk(id);
+
+        if(project === null) throw new Error(`Project can't be updated`)
+        project.set({...body})
+        await project.save();
+
+        res.status(200).send("The project has been updated");
+    } catch (error) {
+        return res.status(404).json({ error: error.message});
+    }
+}
 
 const deleteProject = async (req, res) => {
     const id = req.params.id;
     try {
         const deleted = await Project.destroy({ where: { id } })
         if(deleted === 0) throw new Error('El proyecto no se encontró para ser eliminado')
-        res.status(200).send('Proyecto eliminado')
+        res.sendStatus(204);
     } catch (error) {
         res.status(404).json({error: error.message})
     }
@@ -47,5 +63,6 @@ module.exports = {
     getProjects,
     createProject,
     getProject,
+    updateProject,
     deleteProject
 }
