@@ -1,4 +1,5 @@
 const Project = require('../../models/Project');
+const Task = require('../../models/Task');
 
 const getProjects = async (req, res) => {
     try {
@@ -28,6 +29,17 @@ const getProject = async (req, res) => {
         return res.status(200).send(singleProject);
     } catch (error) {
         return res.status(404).json({ error: error.message})
+    }
+}
+
+const getTasksByProject = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const getTasks = await Task.findAll({ where: { projectId: id } });
+        if(getTasks.length === 0) res.json({message: "You don't have any tasks to do for this project"})
+        res.status(200).send(getTasks);        
+    } catch (error) {
+        
     }
 }
 
@@ -63,6 +75,7 @@ module.exports = {
     getProjects,
     createProject,
     getProject,
+    getTasksByProject,
     updateProject,
     deleteProject
 }
