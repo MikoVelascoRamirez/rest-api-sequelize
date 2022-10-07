@@ -28,6 +28,9 @@ Project.hasMany(Task, {
     sourceKey: 'id'
 });
 
-Task.belongsTo(Project);
+Task.belongsTo(Project, {
+    foreignKey: 'projectId',
+    targetKey: 'id'
+});
 
 module.exports = Project;
