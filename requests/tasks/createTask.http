@@ -1,0 +1,8 @@
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+    "name": "research main theme",
+    "done": false,
+    "projectId": 4
+}

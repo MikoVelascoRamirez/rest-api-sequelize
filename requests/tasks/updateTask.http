@@ -1,0 +1,6 @@
+PUT http://localhost:8080/tasks/2
+Content-Type: application/json
+
+{
+    "projectId" : 3
+}
