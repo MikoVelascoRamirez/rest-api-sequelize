@@ -1,0 +1,14 @@
+POST http://localhost:8080/projects
+Content-Type: application/json
+
+{ 
+  "name": "Not mayo",
+  "priority": 1,
+  "description": "Proyecto de negocio personal xd"
+}
+
+# { 
+#   "name": "Not mayo 2",
+#   "priority": 10,
+#   "description": "Proyecto de negocio personal xdddd"
+# }

@@ -1,0 +1,7 @@
+PUT http://localhost:8080/projects/7
+Content-Type: application/json
+
+{ 
+  "priority": 1,
+  "description": "Proyecto de negocio personal"
+}
